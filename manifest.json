@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Tosify",
+  "version": "1.0",
+  "description": "Extract cookie value from qbo",
+  "permissions": ["cookies"],
+  "host_permissions": ["*://*.apple.com/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}

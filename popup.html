@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apple Cookie Reader</title>
+    <style>
+      body {
+        width: 280px;
+        padding: 12px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Arial, sans-serif;
+        background-color: #1c1c1e;
+        color: #ffffff;
+        margin: 0;
+        border-radius: 12px;
+      }
+      h2 {
+        color: #ffffff;
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        margin: 10px 0;
+      }
+      .cookie-section {
+        margin-bottom: 12px;
+      }
+      .cookie-container {
+        padding: 10px;
+        border: 1px solid #2c2c2e;
+        border-radius: 8px;
+        background-color: #2c2c2e;
+      }
+      .cookie-label {
+        font-weight: 500;
+        color: #86868b;
+        margin-bottom: 6px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .cookie-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cookie-value {
+        flex: 1;
+        word-break: break-all;
+        color: #ffffff;
+        font-family: "SF Mono", monospace;
+        padding: 6px 8px;
+        background-color: #3a3a3c;
+        border: 1px solid #3a3a3c;
+        border-radius: 6px;
+        font-size: 11px;
+        line-height: 1.4;
+        min-height: 16px;
+      }
+      .copy-button {
+        width: 28px;
+        height: 28px;
+        background-color: #86868b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        position: relative;
+      }
+      .copy-button:hover {
+        background-color: #3a3a3c;
+      }
+      .copy-button:active {
+        background-color: #3a3a3c;
+        transform: scale(0.95);
+      }
+      .copy-icon {
+        fill: whitesmoke;
+        margin: 5px;
+      }
+
+      .success-icon {
+        fill: #4caf50;
+        width: 18px;
+        height: 18px;
+        transition: opacity 0.2s;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        stroke: #4caf50;
+        stroke-width: 1;
+      }
+
+      .hidden {
+        opacity: 0;
+      }
+      .error-message {
+        color: #ff453a;
+        font-size: 11px;
+        margin-top: 8px;
+        padding: 6px 8px;
+        background-color: rgba(255, 69, 58, 0.1);
+        border-radius: 4px;
+      }
+      .loading {
+        color: #86868b;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .success-animation {
+        animation: fadeIn 0.2s ease-in;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes checkmark {
+        0% {
+          stroke-dashoffset: 24;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+      .checkmark {
+        animation: checkmark 0.3s ease-in-out forwards;
+        stroke-dasharray: 24;
+        stroke-dashoffset: 24;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>TOSIFY</h2>
+
+    <div class="cookie-section">
+      <div class="cookie-container">
+        <div class="cookie-label">XID Value</div>
+        <div class="cookie-row">
+          <div id="xid-value" class="cookie-value loading">Loading...</div>
+          <button id="copy-xid" class="copy-button">
+            <svg
+              class="copy-icon"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+              />
+            </svg>
+            <svg
+              class="success-icon hidden"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cookie-section">
+      <div class="cookie-container">
+        <div class="cookie-label">as_dc Value</div>
+        <div class="cookie-row">
+          <div id="asdc-value" class="cookie-value loading">Loading...</div>
+          <button id="copy-asdc" class="copy-button">
+            <svg
+              class="copy-icon"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+              />
+            </svg>
+            <svg
+              class="success-icon hidden"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="error-message" class="error-message" style="display: none"></div>
+    <script src="popup.js"></script>
+
+    <footer
+      style="text-align: center; margin-top: 20px; color: #666; font-size: 12px"
+    >
+      Made by TOS in New York
+    </footer>
+  </body>
+</html>
