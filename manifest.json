@@ -3,7 +3,7 @@
   "name": "Tosify",
   "version": "1.0",
   "description": "Extract cookie value from qbo",
-  "permissions": ["cookies"],
+  "permissions": ["cookies", "tabs", "activeTab"],
   "host_permissions": ["*://*.apple.com/*"],
   "action": {
     "default_popup": "popup.html"
